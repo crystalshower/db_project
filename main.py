@@ -1,8 +1,11 @@
-import Tools.Database as DB
+import View.MainMenu as MainMenu
+import logging
 
 
 def main():
-    DB.get_connection("kontol")
+    # Set log level
+    logging.basicConfig(level=logging.WARNING)
+    MainMenu.menu_before_login()
 
 
 if __name__ == '__main__':
