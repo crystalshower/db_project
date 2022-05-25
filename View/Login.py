@@ -1,8 +1,10 @@
+from bullet import colors, SlidePrompt, Input, Password
 from consolemenu import ConsoleMenu
 from consolemenu.items import FunctionItem
 
 import Model.admin_model as admin_model
 import Tools.encryption as encryption
+from View.Company import company_menu
 
 user_logged = ""
 
@@ -15,11 +17,22 @@ def menu_before_login():
 
 
 def login():
-    print("Enter your username and password")
-    username = input("Username: ")
-    password = input("Password: ")
+    print("Vessel Fuel Management System")
+    login_form = SlidePrompt(
+        [
+            Input("Enter your username: ",
+                  word_color=colors.foreground["yellow"]),
+            Password("Enter your password: ",
+                     word_color=colors.foreground["green"])
+        ]
+    )
+    result = login_form.launch()
+
+    username = result[0][1]
+    password = result[1][1]
     hashed_password = encryption.hash_password(password)
     login_data = admin_model.login(username, hashed_password)
+
     if login_data:
         print("Login successful")
         global user_logged
@@ -34,7 +47,7 @@ def menu_after_login():
     Main menu for the application after login
     """
     menu = ConsoleMenu("Vessel Management System", "Welcome," + user_logged)
-    company_page = FunctionItem("Company", "Company management")
+    company_page = FunctionItem("Company", company_menu)
     vessel_page = FunctionItem("Vessel", "Manage vessels")
     trx_page = FunctionItem("Transaction", "Manage transactions")
     menu.append_item(company_page)

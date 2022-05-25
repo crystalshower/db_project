@@ -1,11 +1,14 @@
-import View.MainMenu as MainMenu
+import View.Login as MainMenu
 import logging
+from Tools.Database import connection_test
 
 
 def main():
     # Set log level
-    logging.basicConfig(level=logging.WARNING)
-    MainMenu.menu_before_login()
+    logging.basicConfig(level=logging.INFO)
+
+    connection_test()
+    MainMenu.login()
 
 
 if __name__ == '__main__':

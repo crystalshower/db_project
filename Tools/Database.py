@@ -17,14 +17,22 @@ def create_connection():
         connection = mysql.connector.connect(
             host=config['mysql']['host'],
             user=config['mysql']['user'],
+            passwd=config['mysql']['password'],
             database="fuel_db"
         )
         if connection.is_connected():
             print("Connected to MySQL database")
         return connection
     except mysql.connector.Error as err:
-        print("Error: {}".format(err))
+        logging.error(err)
         return None
+
+
+def connection_test():
+    connection = create_connection()
+    if not connection.is_connected():
+        logging.error("Connection to database failed")
+        raise SystemExit
 
 
 def select(query):
@@ -56,8 +64,8 @@ def insert_update(query):
     cursor = connection.cursor()
     try:
         cursor.execute(query)
-        connection.commit()
         logging.info(cursor.statement)
+        connection.commit()
         return True
     except mysql.connector.Error as err:
         logging.error(err)
@@ -67,4 +75,3 @@ def insert_update(query):
             cursor.close()
             connection.close()
             logging.info("MySQL connection is closed")
-
