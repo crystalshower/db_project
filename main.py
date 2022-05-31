@@ -1,6 +1,6 @@
 import View.Login as MainMenu
-import logging
 from Tools.Database import connection_test
+import logging
 
 
 def main():
@@ -11,5 +11,5 @@ def main():
     MainMenu.login()
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

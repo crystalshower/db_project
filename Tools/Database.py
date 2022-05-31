@@ -59,11 +59,11 @@ def select(query):
 
 
 # Insert data into mysql database
-def insert_update(query):
+def insert_update(query, values):
     connection = create_connection()
     cursor = connection.cursor()
     try:
-        cursor.execute(query)
+        cursor.execute(query, values)
         logging.info(cursor.statement)
         connection.commit()
         return True

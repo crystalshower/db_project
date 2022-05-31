@@ -1,6 +1,7 @@
 from bullet import SlidePrompt, Input, colors, Bullet
 from consolemenu import ConsoleMenu
 from consolemenu.items import FunctionItem
+from prettytable import PrettyTable
 
 import Model.company_model as company_model
 
@@ -37,7 +38,18 @@ def add_company():
 
 
 def view_company():
-    # Convert mysql data to list
-    company_list = company_model.select_all_companies()
-    for company in company_list:
-        print(company)
+    """
+    View all vessels
+    :return:
+    """
+    rows = company_model.select_all_companies()
+
+    # Show rows using prettytable
+    table = PrettyTable()
+    table.field_names = ["Company Name", "Company Location", "Date Added"]
+
+    for i in rows:
+        table.add_row([i[1], i[2], i[3]])
+    
+    print(table)
+    input("Press enter to continue")
