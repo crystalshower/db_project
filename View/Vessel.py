@@ -1,6 +1,4 @@
-from random import choices
-from unittest import result
-from bullet import colors, SlidePrompt, Input, Bullet
+from bullet import colors, SlidePrompt, Input, Bullet, YesNo
 from prettytable import PrettyTable
 from tabulate import tabulate
 from consolemenu import ConsoleMenu
@@ -39,7 +37,10 @@ def add_vessel():
         [Input("Enter vessel name: ", word_color=colors.foreground["yellow"])]
     )
     choices = Bullet(
-        prompt="Select company owner: ", choices=[i[1] for i in company_list], word_color=colors.foreground["green"], return_index=True
+        prompt="Select company owner: ",
+        choices=[i[1] for i in company_list],
+        word_color=colors.foreground["green"],
+        return_index=True,
     )
 
     vessel_name = input_prompt.launch()[0][1]
@@ -54,6 +55,7 @@ def add_vessel():
     else:
         print("Vessel not added")
         input("Press enter to continue")
+
 
 # Unused code
 def view_vessels():
@@ -96,8 +98,12 @@ def edit_vessel():
     :return:
     """
     rows = select_active()
-    choices_vessel = bullet_menu("Select vessel to edit: ", [i[2] for i in rows], return_index=True)
-    choices_edit = bullet_menu("Select field to edit: ", ["Vessel Name", "Company Owner"], return_index=True)
+    choices_vessel = bullet_menu(
+        "Select vessel to edit: ", [i[2] for i in rows], return_index=True
+    )
+    choices_edit = bullet_menu(
+        "Select field to edit: ", ["Vessel Name", "Company Owner"], return_index=True
+    )
 
     if choices_edit[1] == 0:
         input_prompt = SlidePrompt(
@@ -115,7 +121,10 @@ def edit_vessel():
     elif choices_edit[1] == 1:
         company_list = select_all_companies()
         choices = Bullet(
-            prompt="Select company owner: ", choices=[i[1] for i in company_list], word_color=colors.foreground["green"], return_index=True
+            prompt="Select company owner: ",
+            choices=[i[1] for i in company_list],
+            word_color=colors.foreground["green"],
+            return_index=True,
         )
         company_index = choices.launch()[1]
         company_id = company_list[company_index][0]
@@ -126,18 +135,25 @@ def edit_vessel():
             input("Press enter to continue")
         else:
             print("Company owner not updated")
-            input("Press enter to continue")    
-    
+            input("Press enter to continue")
 
-    def delete_vessel():
-        """
-        Delete vessel
-        :return:
-        """
-        rows = select_active()
-        choices_vessel = bullet_menu("Select vessel to delete: ", [i[2] for i in rows], return_index=True)
-        sql = "UPDATE vessel SET is_active = 0 WHERE id_vessel = %s"
-        res = insert_update(sql, (rows[choices_vessel[1]][0]))
+
+def delete_vessel():
+    """
+    Delete vessel
+    :return:
+    """
+    rows = select_active()
+    choices_vessel = bullet_menu(
+        "Select vessel to delete: ", [i[2] for i in rows], return_index=True
+    )
+    confirm_delete = YesNo(
+        prompt="Are you sure you want to delete {}? ".format(rows[choices_vessel[1]][2])
+    )
+    if confirm_delete.launch():
+        sql = "UPDATE vessel SET vs_active_status = 0, vs_tanggal_dihapus = now() WHERE id_vessel = %s"
+        print(rows[choices_vessel[1]][0])
+        res = insert_update(sql, ((rows[choices_vessel[1]][0]),))
         if res:
             print("Vessel deleted successfully")
             input("Press enter to continue")

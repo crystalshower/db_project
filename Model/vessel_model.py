@@ -7,7 +7,7 @@ def select_active():
     Select all active vessels from database to show in table
     :return: List of all vessels"""
     result = db.select(
-        "SELECT vs.*, cm.company_name from vessel vs LEFT JOIN company cm on vs.id_company = cm.id_company;"
+        "SELECT * FROM vessel_list;"
     )
     return result
 

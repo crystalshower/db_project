@@ -22,6 +22,7 @@ def insert_company(data):
     result = db.insert_update(sql)
     return result
 
+
 def update_company(id, data):
     """
     Update company data

@@ -6,6 +6,8 @@ import Model.admin_model as admin_model
 import Tools.encryption as encryption
 from View.Company import company_menu
 from View.Vessel import vessel_menu
+from View.Merk import merk_menu
+from View.Stock import stock_menu
 
 user_logged = ""
 
@@ -18,6 +20,9 @@ def menu_before_login():
 
 
 def login():
+    """
+    Login page
+    """
     while True:
         print("Vessel Fuel Management System")
         login_form = SlidePrompt(
@@ -48,11 +53,15 @@ def menu_after_login():
     """
     Main menu for the application after login
     """
-    menu = ConsoleMenu("Vessel Management System", "Welcome," + user_logged)
+    menu = ConsoleMenu("Vessel Management System", "Welcome, " + user_logged)
     company_page = FunctionItem("Company", company_menu)
     vessel_page = FunctionItem("Vessel", vessel_menu)
+    merk_page = FunctionItem("Merk", merk_menu)
+    stock_page = FunctionItem("Stock", stock_menu)
     trx_page = FunctionItem("Transaction", "Manage transactions")
     menu.append_item(company_page)
     menu.append_item(vessel_page)
+    menu.append_item(merk_page)
+    menu.append_item(stock_page)
     menu.append_item(trx_page)
     menu.show()
