@@ -21,6 +21,10 @@ def company_menu():
 
 
 def add_company():
+    """
+    Add company
+    :return:
+    """
     add_form = SlidePrompt(
         [
             Input("Enter new company name: ", word_color=colors.foreground["green"]),

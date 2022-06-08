@@ -5,3 +5,4 @@
 db_config.ini
 *.pyc
 .vscode/launch.json
+.vscode/

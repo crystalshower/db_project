@@ -10,6 +10,7 @@ from View.Merk import merk_menu
 from View.Stock import stock_menu
 
 user_logged = ""
+user_id = None
 
 
 def menu_before_login():
@@ -44,6 +45,9 @@ def login():
             print("Login successful")
             global user_logged
             user_logged = username
+            
+            global user_id
+            user_id = login_data[0][0]
             menu_after_login()
         else:
             print("Login failed")
