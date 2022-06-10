@@ -4,6 +4,8 @@ import logging
 
 
 def main():
+    # TODO: Add resultset check
+
     # Set log level
     logging.basicConfig(level=logging.INFO)
 

@@ -41,6 +41,9 @@ def manage_stock():
 
 
 def stock_in():
+    """
+    Stock in
+    """
     admin_id = Login.user_id
     merk_list = select()
 
@@ -71,8 +74,13 @@ def stock_out():
     """
     Stock out
     """
-    stock_list = select_stock()
+    stock_list = stock_model.select_stock()
     vessel_list = select_active()
+
+    if stock_list == None or vessel_list == None:
+        print("No stock or vessel available.\nPlease add stock or vessel first\n")
+        input("Press enter to continue")
+        return
 
     stock_option = []
     for i in stock_list:
@@ -90,12 +98,26 @@ def stock_out():
         return_index=True,
     )
 
+    fk_stock = stock_list[stock_choice[1]][0]
+    fk_vessel = vessel_list[vessel_choice[1]][0]
+
+    res = stock_model.update_stock((fk_stock, ))
+
+    if res:
+        trx_model.insert_out([fk_stock, Login.user_id, fk_vessel, "out"])
+        print("Stock out successfully")
+        input("Press enter to continue")
+    else:
+        print("Stock out failed")
+        input("Press enter to continue")
+
+
 
 def view_table():
     """
     View table
     """
-    stock_list = select_stock()
+    stock_list = stock_model.select_stock()
     print(stock_list)
 
     print(

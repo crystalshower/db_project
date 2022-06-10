@@ -42,3 +42,25 @@ def insert_stock_in(data):
     except Exception as err:
         logging.error(err)
         return False, None
+
+
+def update_stock(data):
+    """
+    Update stock in database
+    :param data: List of data to update
+    :return: True if success, False if failed
+    """
+    try:
+        conn = db.create_connection()
+        cursor = conn.cursor()
+        sql = "UPDATE stok_fuel set is_transaction = 1" \
+            " WHERE item_id = %s;"
+        logging.info(sql, data)
+        cursor.execute(sql, data)
+        logging.info(cursor.statement)
+        conn.commit()
+        return True
+    except Exception as err:
+        logging.error(err)
+        return False
+
