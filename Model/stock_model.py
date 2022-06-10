@@ -1,4 +1,5 @@
 import logging
+
 import Tools.Database as db
 
 
@@ -36,7 +37,7 @@ def insert_stock_in(data):
         sql = "INSERT INTO stok_fuel (id_merk, serial_tong)" \
               "VALUES (%s, %s);"
         cursor.execute(sql, data)
-        conn.commit()   
+        conn.commit()
         last_row = cursor.lastrowid
         return True, last_row
     except Exception as err:
@@ -54,7 +55,7 @@ def update_stock(data):
         conn = db.create_connection()
         cursor = conn.cursor()
         sql = "UPDATE stok_fuel set is_transaction = 1" \
-            " WHERE item_id = %s;"
+              " WHERE item_id = %s;"
         logging.info(sql, data)
         cursor.execute(sql, data)
         logging.info(cursor.statement)
@@ -63,4 +64,3 @@ def update_stock(data):
     except Exception as err:
         logging.error(err)
         return False
-

@@ -1,12 +1,12 @@
+from bullet import SlidePrompt, Input
 from consolemenu import ConsoleMenu
 from consolemenu.items import FunctionItem
-from bullet import SlidePrompt, Input, colors
 from tabulate import tabulate
 
-from Tools.Template import *
-from Model.merk_model import select
 from Model import trx_model, stock_model
+from Model.merk_model import select
 from Model.vessel_model import select_active
+from Tools.Template import *
 from View import Login
 
 
@@ -101,7 +101,7 @@ def stock_out():
     fk_stock = stock_list[stock_choice[1]][0]
     fk_vessel = vessel_list[vessel_choice[1]][0]
 
-    res = stock_model.update_stock((fk_stock, ))
+    res = stock_model.update_stock((fk_stock,))
 
     if res:
         trx_model.insert_out([fk_stock, Login.user_id, fk_vessel, "out"])
@@ -110,7 +110,6 @@ def stock_out():
     else:
         print("Stock out failed")
         input("Press enter to continue")
-
 
 
 def view_table():

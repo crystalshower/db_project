@@ -1,12 +1,11 @@
-from bullet import SlidePrompt, Input, colors
+from bullet import SlidePrompt, Input
 from consolemenu import ConsoleMenu
 from consolemenu.items import FunctionItem
-from Tools.Template import *
-from Tools.Database import insert_update
 from tabulate import tabulate
 
-
 import Model.company_model as company_model
+from Tools.Database import insert_update
+from Tools.Template import *
 
 
 def company_menu():
@@ -51,7 +50,7 @@ def edit_company():
         "Select company to edit: ", [i[1] for i in rows], return_index=True
     )
     what_edited = bullet_menu(
-        "What do you want to edit?",["Company Name", "Company Address"], return_index=True
+        "What do you want to edit?", ["Company Name", "Company Address"], return_index=True
     )
     if what_edited[1] == 0:
         new_name = SlidePrompt(
@@ -59,7 +58,7 @@ def edit_company():
         )
         result = new_name.launch()
         sql = "UPDATE company SET company_name = %s WHERE id_company = %s;"
-        res = insert_update(sql, (result[0][1],  rows[choices_company[1]][0]))
+        res = insert_update(sql, (result[0][1], rows[choices_company[1]][0]))
         if res:
             print("Company name updated successfully")
             input("Press enter to continue")
@@ -72,14 +71,14 @@ def edit_company():
         )
         result = new_address.launch()
         sql = "UPDATE company SET alamat = %s WHERE id_company = %s;"
-        res = insert_update(sql, (result[0][1],  rows[choices_company[1]][0]))
+        res = insert_update(sql, (result[0][1], rows[choices_company[1]][0]))
         if res:
             print("Company address updated successfully")
             input("Press enter to continue")
         else:
             print("Company address could not be updated")
             input("Press enter to continue")
-    
+
 
 def view_company():
     """

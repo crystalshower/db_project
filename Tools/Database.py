@@ -1,6 +1,7 @@
-import mysql.connector
 import configparser
 import logging
+
+import mysql.connector
 
 
 def read_config(filename):
