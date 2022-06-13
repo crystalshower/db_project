@@ -62,7 +62,7 @@ def stock_in():
     res, insert_id = stock_model.insert_stock_in((fk_merk, serial_number))
 
     if res:
-        trx_model.insert([insert_id, admin_id, "in"])
+        trx_model.insert_in([insert_id, admin_id, "in"])
         print("Stock added successfully")
         input("Press enter to continue")
     else:
