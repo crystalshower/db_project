@@ -42,7 +42,7 @@ def manage_stock():
 
 def stock_in():
     """
-    Stock in
+    Stock i4n
     """
     admin_id = Login.user_id
     merk_list = select()
@@ -77,7 +77,7 @@ def stock_out():
     stock_list = stock_model.select_stock()
     vessel_list = select_active()
 
-    if stock_list == None or vessel_list == None:
+    if stock_list is None or vessel_list is None:
         print("No stock or vessel available.\nPlease add stock or vessel first\n")
         input("Press enter to continue")
         return
@@ -117,7 +117,6 @@ def view_table():
     View table
     """
     stock_list = stock_model.select_stock()
-    print(stock_list)
 
     print(
         tabulate(

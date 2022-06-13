@@ -8,6 +8,7 @@ from View.Company import company_menu
 from View.Merk import merk_menu
 from View.Stock import stock_menu
 from View.Vessel import vessel_menu
+from View.Trx import trx_menu
 
 user_logged = ""
 user_id = None
@@ -62,7 +63,7 @@ def menu_after_login():
     vessel_page = FunctionItem("Vessel", vessel_menu)
     merk_page = FunctionItem("Merk", merk_menu)
     stock_page = FunctionItem("Stock", stock_menu)
-    trx_page = FunctionItem("Transaction", "Manage transactions")
+    trx_page = FunctionItem("Transaction", trx_menu)
     menu.append_item(company_page)
     menu.append_item(vessel_page)
     menu.append_item(merk_page)

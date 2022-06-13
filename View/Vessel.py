@@ -1,7 +1,6 @@
 from bullet import colors, SlidePrompt, Input, Bullet, YesNo
 from consolemenu import ConsoleMenu
 from consolemenu.items import FunctionItem
-from prettytable import PrettyTable
 from tabulate import tabulate
 
 from Model.company_model import select_all_companies
