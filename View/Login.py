@@ -5,9 +5,9 @@ from consolemenu.items import FunctionItem
 import Model.admin_model as admin_model
 import Tools.encryption as encryption
 from View.Company import company_menu
-from View.Vessel import vessel_menu
 from View.Merk import merk_menu
 from View.Stock import stock_menu
+from View.Vessel import vessel_menu
 
 user_logged = ""
 user_id = None
@@ -45,7 +45,7 @@ def login():
             print("Login successful")
             global user_logged
             user_logged = username
-            
+
             global user_id
             user_id = login_data[0][0]
             menu_after_login()

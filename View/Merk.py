@@ -1,11 +1,11 @@
+from bullet import SlidePrompt, Input, colors
 from consolemenu import ConsoleMenu
 from consolemenu.items import FunctionItem
-from bullet import SlidePrompt, Input, colors
 from tabulate import tabulate
 
+import Model.merk_model as merk_model
 from View.Template import bullet_menu
 
-import Model.merk_model as merk_model
 
 def merk_menu():
     """
@@ -32,7 +32,7 @@ def add_merk():
     )
     merk_name = input_prompt.launch()[0][1]
 
-    res = merk_model.insert([merk_name,])
+    res = merk_model.insert([merk_name, ])
     if res:
         print("{} added successfully".format(merk_name))
         input("Press enter to continue")

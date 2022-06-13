@@ -1,5 +1,6 @@
 from bullet import Bullet, colors
 
+
 def bullet_menu(prompt, choices, return_index=False):
     """
     Bullet Menu
