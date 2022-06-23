@@ -6,7 +6,7 @@ from tabulate import tabulate
 from Model.company_model import select_all_companies
 from Model.vessel_model import select_active
 from Tools.Database import insert_update
-from View.Template import bullet_menu
+from Tools.Template import bullet_menu
 
 
 def vessel_menu():

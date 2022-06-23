@@ -47,14 +47,6 @@ def insert_in(data):
     return result
 
 
-def graph_in():
-    """
-    Graph in
-    """
-    sql = """select count(*) "Total Stock Added", date(stock_tanggal_ditambahkan) "Date Added" from stok_fuel group 
-    by date(stock_tanggal_ditambahkan) order by 2; """
-
-
 def insert_out(data):
     """
     Insert new transaction into database

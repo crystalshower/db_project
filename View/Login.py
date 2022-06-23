@@ -7,9 +7,8 @@ import Tools.encryption as encryption
 from View.Company import company_menu
 from View.Merk import merk_menu
 from View.Stock import stock_menu
-from View.Vessel import vessel_menu
 from View.Trx import trx_menu
-from View.Admin import admin_menu
+from View.Vessel import vessel_menu
 
 user_logged = ""
 user_id = None

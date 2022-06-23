@@ -2,6 +2,7 @@ ansiwrap==0.8.4
 bullet==2.2.0
 console-menu==0.7.1
 mysql-connector-python==8.0.29
+plotext==5.0.2
 protobuf==3.20.1
 six==1.16.0
 tabulate==0.8.9

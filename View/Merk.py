@@ -4,7 +4,7 @@ from consolemenu.items import FunctionItem
 from tabulate import tabulate
 
 import Model.merk_model as merk_model
-from View.Template import bullet_menu
+from Tools.Template import bullet_menu
 
 
 def merk_menu():

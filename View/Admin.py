@@ -1,11 +1,10 @@
 from bullet import SlidePrompt, Input, colors
-from consolemenu.items import FunctionItem
 from consolemenu import ConsoleMenu
+from consolemenu.items import FunctionItem
 from tabulate import tabulate
 
 from Model import admin_model
 from View import Login
-from Tools import encryption
 
 
 def admin_menu():
